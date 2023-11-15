@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>직원 근태관리</title>
+</head>
+<body>
+  <div>직원 근태관리</div>
+
+  <!-- __________________________________________________________________________________________________________________________________ 출근처리 양식 s -->
+  <form name='form-go-to-office-process' action="/employee/go-to-office" method="post" autocomplete="off">
+    <input  style="display: none;" type="text" name="go-to-office" value="promised202311110318" id="link202311111505">
+    <button type="submit">출근처리</button>
+  </form>
+  <!-- __________________________________________________________________________________________________________________________________ 출근처리 양식 e -->
+
+  <!-- __________________________________________________________________________________________________________________________________ 퇴근처리 양식 s -->
+  <form name='form-leave-office-process' action="/employee/leave-office" method="post" autocomplete="off">
+    <input  style="display: none;" type="text" name="leave-office" value="promised202311110318" id="link202311111506">
+    <button type="submit">퇴근처리</button>
+  </form>
+  <!-- __________________________________________________________________________________________________________________________________ 퇴근처리 양식 e -->
+
+  <!-- __________________________________________________________________________________________________________________________________ 직원 FAQ 게시판 s -->
+  <form name='form-faq-board-process' action="/employee/faq-board" method="post" autocomplete="off">
+    <input  style="display: none;" type="text" name="faq-board" value="promised202311110318" id="link20231111185429">
+    <button type="submit">직원 FAQ 게시판</button>
+  </form>
+  <!-- __________________________________________________________________________________________________________________________________ 직원 FAQ 게시판 e -->
+
+  <!-- __________________________________________________________________________________________________________________________________ 파일 업로드 게시판 s -->
+  <form name='form-file-upload' action="/employee/file-upload" >
+    <button type="submit">파일 업로드 게시판</button>
+  </form>
+  <!-- __________________________________________________________________________________________________________________________________ 파일 업로드 게시판 e -->
+
+   <!-- __________________________________________________________________________________________________________________________________ 로그아웃처리 양식 s -->
+   <form name='form_logout' action="/employee/logout" method="post" autocomplete="off">
+    <input  style="display: none;" type="text" name="logout" value="promised202311110318" id="link20231111185440">
+    <button type="submit">로그아웃</button>
+  </form>
+   <!-- __________________________________________________________________________________________________________________________________ 로그아웃처리 양식 e -->
+  
+
+
+
+  
+</body>
+</html>
