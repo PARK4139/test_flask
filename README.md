@@ -18,7 +18,7 @@
 # 기술 키워드 및 스택 묘사
 web server # 동적 웹페이지
     front-end
-        #html #jinja2 #js #css #netlify(아마 대체되어야 함.일단 테스트 해보자)
+        #html #jinja2 #js #css #netlify(netlify는 정적웹호스팅에 적합하다고 들었다. 동적웹 호스팅을 하고 싶기 때문에 아마 대체되어야 함.일단 테스트 해보자)
 
     back-end 
         #python #flask(web framework)

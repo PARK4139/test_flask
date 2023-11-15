@@ -1,7 +1,7 @@
 FROM node:18-alpine
 #18 은 node.js 의 version 을 맞추기 위해서 node -v 의 결과와 동일하도록 셋팅
 
-WORKDIR /web_flask_via_docker
+WORKDIR /
 
 COPY .idea ./
 COPY .venv ./
