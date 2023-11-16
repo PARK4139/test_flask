@@ -4,7 +4,7 @@ import sqlalchemy
 from sqlalchemy.orm import declarative_base
 
 from config import config_web, config_db, db_url, url_paths, url_error_pages
-from models.models import employee_joined_list
+from models.models import employee_joined_list, employee_commutation_management_tb, db_session
 
 print(" __________________________________________________________________________________________________________________________________  encoding ")
 # -*- coding: utf-8 -*-
@@ -179,7 +179,7 @@ def all_info():
                 print('[%s\%s]' % (path, filename))
     print(" __________________________________________________________________________________________________________________________________  20180526 14:00 이전 생성된 파일 출력 e")
     print(" __________________________________________________________________________________________________________________________________  현재시간기준 생성된지 1일 된 zip 확장자 파일만 출력 s")
-    times = get_time_as_style("0").split(' ')
+    times = get_server_time_as_style("0").split(' ')
     time_inputed = times[0] + times[1] + str(int(times[2]) - 1) + " " + times[3] + ":" + times[4]
     print(time_inputed)
     time_inputed = '20230414 20:53'
@@ -203,7 +203,7 @@ def all_info():
         'ID_REQUEST': 1,
         'CUSTOMER_NAME': '_박_정_훈_',
         'MASSAGE': '주문서변경요청',
-        'DATE_REQUESTED': get_time_as_style("1"),
+        'DATE_REQUESTED': get_server_time_as_style("1"),
         'USE_YN': "Y",
     }
     data_str = json.dumps(data_dict, indent=4)
@@ -235,7 +235,7 @@ def all_info():
         'ID_REQUEST': 1,
         'CUSTOMER_NAME': '_박_정_훈_',
         'MASSAGE': '주문서변경요청',
-        'DATE_REQUESTED': get_time_as_style("1"),
+        'DATE_REQUESTED': get_server_time_as_style("1"),
         'USE_YN': "Y",
         'MARVEL CHARACTERS': [
             {'MACHANICAL MEMBER1': ['IRONMAN', 'BLACK PANTHER']},
@@ -451,7 +451,7 @@ def listen(recognizer, audio):
 print(" __________________________________________________________________________________________________________________________________  time initialization] ")
 
 
-def get_time_as_style(time_style):
+def get_server_time_as_style(time_style):
     now = time
     localtime = now.localtime()
     if time_style == '0':
@@ -538,12 +538,12 @@ def AI_respon(usr_input_txt):
         taskkill('Alsong.exe')
 
     elif usr_input_txt == '시간':
-        yyyy = get_time_as_style('5')
-        MM = get_time_as_style('6')
-        dd = get_time_as_style('7')
-        HH = get_time_as_style('8')
-        mm = get_time_as_style('9')
-        ss = get_time_as_style('10')
+        yyyy = get_server_time_as_style('5')
+        MM = get_server_time_as_style('6')
+        dd = get_server_time_as_style('7')
+        HH = get_server_time_as_style('8')
+        mm = get_server_time_as_style('9')
+        ss = get_server_time_as_style('10')
         AI_speak('현재 시간은')
         AI_speak(yyyy + '년')
         AI_speak(MM + '월')
@@ -1086,9 +1086,9 @@ def AI_respon(usr_input_txt):
         # AI_speak('월')
         # AI_speak(get_time_as_style('7'))
         # AI_speak('일')
-        AI_speak(get_time_as_style('8'))
+        AI_speak(get_server_time_as_style('8'))
         AI_speak('시')
-        AI_speak(get_time_as_style('9'))
+        AI_speak(get_server_time_as_style('9'))
         AI_speak('분')
         AI_speak('입니다')
 
@@ -1140,16 +1140,16 @@ def AI_respon(usr_input_txt):
         started_time = 0
         while (True):
 
-            yyyy = get_time_as_style('5')
-            MM = get_time_as_style('6')
-            dd = get_time_as_style('7')
-            HH = get_time_as_style('8')
-            mm = get_time_as_style('9')
-            ss = get_time_as_style('10')
+            yyyy = get_server_time_as_style('5')
+            MM = get_server_time_as_style('6')
+            dd = get_server_time_as_style('7')
+            HH = get_server_time_as_style('8')
+            mm = get_server_time_as_style('9')
+            ss = get_server_time_as_style('10')
 
             if cnt == 0:
                 # AI_speak('while routine에 접근을 시도합니다')
-                started_time = get_time_as_style('0')
+                started_time = get_server_time_as_style('0')
                 # AI_speak('컴퓨터와 대화할 준비가 되었습니다')
                 # taskkill('ALSong.exe')
                 cnt += 1
@@ -1604,18 +1604,17 @@ def pause():
 
 
 print(" __________________________________________________________________________________________________________________________________  s")
-print(f'''서버 시작 시각            : {get_time_as_style('0')}''')
+print(f'''서버 시작 시각            : {get_server_time_as_style('0')}''')
 time_s = time.time()
 
 # :: 웹 서버, DB 서버 API 관련 모듈 설정
 from flask import Flask, render_template, jsonify, url_for, request, redirect, abort, flash
 from sqlalchemy import create_engine, text
 import pymysql
+
 # import mysql   # pip install mysql 수행 시 error 발생되어 주석처리.
 # import config  # config.py 에서 config/__init__.py 로 대체되었음.
 # import ssl     #ssl 보안레이어 추가시 사용
-
-
 
 
 print(' __________________________________________________________________________________________________________________________________ flask config 설정 s')
@@ -1638,12 +1637,11 @@ app.secret_key = b'f1748cc247d4d2978cda20416015bd551a90561e44e79b2a003a48bd646c4
 #  __________________________________________________________________________________________________________________________________ python web session 설정 e
 #  __________________________________________________________________________________________________________________________________ flask file upload 설정 s
 # :: 파일 업로드 위치 설정
-app.config['UPLOAD_FOLDER'] = 'uploads/'  #이러면 동작은 되던데?. 의도한건 아니지만.
-# app.config['UPLOAD_FOLDER'] = '/uploads/'
-# app.config['UPLOAD_FOLDER'] = 'static/uploads/'
+app.config['UPLOAD_FOLDER'] = 'uploads/'  # 왜 엉뚱한 위치에 저장이 되는지 모르겠어.
 
 # :: 파일 확장자 범위 설정
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip', 'toml'}
+
 
 # :: 파일 확장자 유효성 확인 설정
 def check_allowed_file_or_not(filename):
@@ -1658,6 +1656,8 @@ def check_allowed_file_or_not(filename):
 페이지 라우팅 테스트 페이지
 '''
 url_paths['url202311100030'] = '/urls-routing-test'
+
+
 @app.route(url_paths['url202311100030'])
 def test_urls_routing():
     if (request.method == 'GET'):  # 해당페이지 의 GET REQUEST 인 경우 수행할 STATEMENTS
@@ -1671,7 +1671,7 @@ def test_urls_routing():
         </html>'''
         return content
     else:
-        #POST 요청 시
+        # POST 요청 시
         abort(401)
         # 서버에서 엑세스 거부 하도록 설정 @app.route 설정이 GET 으로 되어 있어 abort(401)은 도달하지 않을 코드 같다.
 
@@ -1679,6 +1679,8 @@ def test_urls_routing():
 '''
 에러 페이지
 '''
+
+
 @app.route("/error")
 def route20231111132812():
     return render_template("/errors/error_default.html")
@@ -1779,7 +1781,7 @@ def route2023111110312():
     if employees_joined.first() != None:
         print(f''':: 세션에 저장''')
         session['id'] = request.form['id']
-        session['login_time'] = get_time_as_style("0")
+        session['login_time'] = get_server_time_as_style("0")
         for employee_joined in employees_joined:
             print(f'''name: {employee_joined.name}  id: {employee_joined.id}   pw: {employee_joined.pw}''')
             if session['name'] != None:
@@ -1814,6 +1816,8 @@ def route2023111110312():
 직원 로그아웃 페이지
 '''
 url_paths['url20231111164038'] = '/employee/logout'
+
+
 @app.route(url_paths['url20231111164038'], methods=['POST'])
 def route20231111164103():
     # :: 세션에서 id 제거
@@ -1874,7 +1878,7 @@ def route2023111110314():
 
     # :: ORM 사용해서 DB에 저장
     print(f''' :: ORM 사용해서 DB에 저장''')
-    employee_joined_list.add_new_records(name=request.form['name'], pw=request.form['pw'], phone_no=request.form['phone_no'], address=request.form['address'], e_mail=request.form['e_mail'], age=request.form['id'], id=request.form['id'], date_joined=get_time_as_style("0"), date_canceled="")
+    employee_joined_list.add_new_records(name=request.form['name'], pw=request.form['pw'], phone_no=request.form['phone_no'], address=request.form['address'], e_mail=request.form['e_mail'], age=request.form['id'], id=request.form['id'], date_joined=get_server_time_as_style("0"), date_canceled="")
 
     # :: 회원가입
     return f'''
@@ -1894,18 +1898,30 @@ def route2023111110314():
 url_paths['url20231111538'] = '/employee/go-to-office'
 
 
+def validate_phone_number(value):
+    return value
+
+
 @app.route(url_paths['url20231111538'], methods=['POST'])
 def route2023111110321():
-    # :: 세션에서 데이터 가져와서 변수에 저장
-    id = session['id']
+    # :: 변수에 저장
+    server_time = get_server_time_as_style('0')
+    HH = server_time.split(' ')[3]
+    mm = server_time.split(' ')[4]
+    ss = server_time.split(' ')[5]
     name = session['name']
-
-    # :: 서버시간 가져와서 변수에 저장
-    HH = get_time_as_style('8')
-    mm = get_time_as_style('9')
-
+    employees = db_session.query(employee_joined_list).filter_by(id=session['id'], name=session['name']).limit(10).all()
+    print(len(employees))
+    if (len(employees) == 1):
+        for employee in employees:
+            # print(employee.id)
+            # print(employee.name)
+            # print(employee.phone_no)
+            print(validate_phone_number(employee.phone_no))
+            # :: employee_commutation_management_tb에 저장
+            employee_commutation_management_tb.add_db_record(id=session['id'], name=session['name'], phone_no=employee.phone_no, time_to_go_to_office=server_time, time_to_leave_office='-')
     return f'''
-        <div>{name} 님 {HH}시 {mm}분 출근처리 되었습니다.</div>
+        <div>{name} 님 {HH}시 {mm}분 {ss}초 출근처리 되었습니다.</div>
         <script>
             setTimeout(function() {{
                 window.location.href='{url_paths['url20231111501']}'  
@@ -1923,16 +1939,25 @@ url_paths['url202311110410'] = '/employee/leave-office'
 
 @app.route(url_paths['url202311110410'], methods=['POST'])
 def route202311110410():
-    # :: 세션에서 데이터 가져와서 변수에 저장
-    id = session['id']
+    # :: 변수에 저장
+    server_time = get_server_time_as_style('0')
+    HH = server_time.split(' ')[3]
+    mm = server_time.split(' ')[4]
+    ss = server_time.split(' ')[5]
     name = session['name']
-
-    # :: 서버시간 가져와서 변수에 저장
-    HH = get_time_as_style('8')
-    mm = get_time_as_style('9')
+    employees = db_session.query(employee_joined_list).filter_by(id=session['id'], name=session['name']).limit(10).all()
+    print(len(employees))
+    if (len(employees) == 1):
+        for employee in employees:
+            # print(employee.id)
+            # print(employee.name)
+            # print(employee.phone_no)
+            print(validate_phone_number(employee.phone_no))
+            # :: employee_commutation_management_tb에 저장
+            employee_commutation_management_tb.add_db_record(id=session['id'], name=session['name'], phone_no=employee.phone_no, time_to_go_to_office='-', time_to_leave_office=server_time)
 
     return f'''
-        <div>{name} 님 {HH}시 {mm}분 퇴근처리 되었습니다.</div>
+        <div>{name} 님 {HH}시 {mm}분 {ss}초 퇴근처리 되었습니다.</div>
         <script>
             setTimeout(function() {{
                 window.location.href='{url_paths['url20231111501']}'  
@@ -1987,31 +2012,39 @@ url_paths['url20231111185216'] = '/employee/file-upload_'
 def upload_file():
     # check if the post request has the file part
     if 'file' not in request.files:
-        return redirect(request.url)
+        return f'''
+            <!doctype html>
+            <script>
+            alert("요청하신 파일이 없어 업로드에 실패했습니다");
+            window.location.href = "{url_paths['url20231111161629']}";
+            </script>
+            '''
     file = request.files['file']
     if file.filename == '':
-        return redirect(request.url)
+        return f'''
+            <!doctype html>
+            <script>
+            alert("요청하신 파일명이 공백으로 업로드할 수 없습니다");
+            window.location.href = "{url_paths['url20231111161629']}";
+            </script>
+            '''
     if file and check_allowed_file_or_not(file.filename):
-        filename = secure_filename(file.filename)
-        app.logger.debug(file)
-        file.save(secure_filename(file.filename))
+        print(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-        app.logger.debug('파일 업로드 시도되었습니다.debugging20231111190921')
-        return redirect(url_paths['url20231111161629'])
-        app.logger.debug(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']))
-        app.logger.debug(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        file.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename))
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        time.sleep(random.uniform(3, 5))
-        return redirect(request.url)
-    return '''
+        # return redirect(url_paths['url20231111161629'])
+        return f'''
+            <!doctype html>
+            <script>
+            alert("파일이 업로드 되었습니다.");
+            window.location.href = "{url_paths['url20231111161629']}";
+            </script>
+            '''
+    return f'''
     <!doctype html>
-    <title>업로드 실패 왜 안되는지 이유를 찾지 못했다.</title>
-    <h1>업로드 실패 왜 안되는지 이유를 찾지 못했다.</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
+    <script>
+    alert("파일 업로드 중 예외적인 상황이 발생했습니다. 관리자에게 문의해주세요. ");
+    window.location.href = "{url_paths['url20231111161629']}";
+    </script>
     '''
 
 
@@ -2114,7 +2147,7 @@ def test_native_query_and_render():
     Session.configure(bind=engine)
 
     session = Session()
-    session.add(REQUEST_TB(CUSTOMER_NAME="_박_정_훈_y_", MASSAGE="주문서변경요청", DATE_REQUESTED=get_time_as_style("0"), USE_YN="Y"))
+    session.add(REQUEST_TB(CUSTOMER_NAME="_박_정_훈_y_", MASSAGE="주문서변경요청", DATE_REQUESTED=get_server_time_as_style("0"), USE_YN="Y"))
     session.commit()
     session.close()
     print(" __________________________________________________________________________________________________________________________________ query based on ORM insert sql e")
@@ -2303,7 +2336,7 @@ def main():
     # 왜 인지는 모르겠으나 debug=True 하면 os.system($url) 꼴로 작성한 코드가 두번 실행이 되었다.
 
     # :: pruduction mode
-    app.run(host=config_web['host'],  port=config_web['port'])
+    app.run(host=config_web['host'], port=config_web['port'])
     # ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
     # ssl_context.load_cert_chain(certfile='newcert.pem', keyfile='newkey.pem', password='secret')
     # app.run(host="0.0.0.0", port=4443, ssl_context=ssl_context)
@@ -2334,14 +2367,14 @@ if __name__ == '__main__':  # 이 파이썬 코드는 뭐냐?
         session.clear()
         print(f'''세션 내 모든 값을 삭제하였습니다.''')
 
-    # 야호! 이제 플라스크로 간단한 웹서버를 만들어 직원용 근태관리 서비스를 제공할 수 있다.
-# DB 서버 호스팅 : 알아봐야 하는디...   "회사 PC" or "DB 서버 호스팅 업체"
+    # 야호! 이제 플라스크로 간단한 웹서버를 만들어 직원용 서비스를 제공할 수 있다.
+# DB 서버 호스팅 : 알아봐야 하는디...   "회사 PC" or "DB 서버 호스팅 업체"  hiroku 를 사용해서 웹 호스팅을 해보자.
 # 웹서버 호스팅
 
 
 print(" __________________________________________________________________________________________________________________________________  e")
 print(" __________________________________________________________________________________________________________________________________  ending log s")
 time_e = time.time()
-print(f'''서버 종료 시각            : {get_time_as_style('0')}''')
+print(f'''서버 종료 시각            : {get_server_time_as_style('0')}''')
 print(f'''서버 라이프 사이클 실행시간 : {time_e - time_s}''')
 print(" __________________________________________________________________________________________________________________________________  ending log e")

@@ -10,7 +10,7 @@ Base.metadata.create_all(engine)
 
 Session = sqlalchemy.orm.sessionmaker()
 Session.configure(bind=engine)
-session = Session()
+db_session = Session()
 
 
 # class REQUEST_TB(Base):
@@ -163,6 +163,7 @@ class Answer():
 
 #  __________________________________________________________________________________________________________________________________ employee_joined_list s
 
+
 class employee_joined_list(Base):
     __tablename__ = "employee_joined_list"
     # __table_args__ = {'mysql_collate': 'utf8_general_ci'}  # encoding 안되면 비슷하게 방법을 알아보자  mysql 에 적용이 가능한 코드로 보인다.
@@ -212,9 +213,9 @@ class employee_joined_list(Base):
             date_joined=date_joined,
             date_canceled=date_canceled
         )
-        session.add(new_records)
-        session.commit()
-        session.close()  # 사용 후 닫아야 하는지 이거 맞는지는 모르겠다.실험해보자
+        db_session.add(new_records)
+        db_session.commit()
+        db_session.close()  # 사용 후 닫아야 하는지 이거 맞는지는 모르겠다.실험해보자
         return new_records
 
     def get_employee_joined(id, pw):
@@ -222,7 +223,7 @@ class employee_joined_list(Base):
         # select_result = f'''SELECT * FROM employee_joined_list where id= {id} and pw= {pw} ORDER BY date_joined LIMIT 2;'''
 
         # :: ORM 사용 방식
-        select_result = session.query(employee_joined_list).filter_by(id=id, pw=pw).limit(2)
+        select_result = db_session.query(employee_joined_list).filter_by(id=id, pw=pw).limit(2)
         # select_result = session.query(employee_joined_list).filter_by(id=id, pw=pw).first()
         # select_result = session.query(employee_joined_list).filter_by(id=id).order_by(employee_joined_list.id_autoincrement.desc()).all()
         # select_result = session.query(employee_joined_list).filter(employee_joined_list.name.ilike("%_박_정_훈_%").all_())
@@ -237,20 +238,22 @@ class employee_commutation_management_tb(Base):
     id_autoincrement = sqlalchemy.Column(sqlalchemy.INTEGER, primary_key=True, autoincrement=True)
     id = sqlalchemy.Column(sqlalchemy.VARCHAR(length=13))
     name = sqlalchemy.Column(sqlalchemy.VARCHAR(length=13))
+    phone_no = sqlalchemy.Column(sqlalchemy.VARCHAR(length=11))
     time_to_go_to_office = sqlalchemy.Column(sqlalchemy.VARCHAR(length=100))
     time_to_leave_office = sqlalchemy.Column(sqlalchemy.VARCHAR(length=100))
 
-    def __init__(self, name, id, time_to_go_to_office, time_to_leave_office):
+    def __init__(self, name, id, phone_no,time_to_go_to_office, time_to_leave_office):
         self.name = name
         self.id = id
+        self.phone_no =phone_no
         self.time_to_go_to_office = time_to_go_to_office
         self.time_to_leave_office = time_to_leave_office
 
-    def add_new_record(name, id, time_to_go_to_office, time_to_leave_office):
-        new_records = employee_commutation_management_tb(name=name, id=id, time_to_go_to_office=time_to_go_to_office, time_to_leave_office=time_to_leave_office)
-        session.add(new_records)
-        session.commit()
-        session.close()  # 사용 후 닫아야 하는지 이거 맞는지는 모르겠다.실험해보자
-        return new_records
+    def add_db_record(name, id,phone_no, time_to_go_to_office, time_to_leave_office):
+        db_records = employee_commutation_management_tb(name=name,id=id,phone_no=phone_no,  time_to_go_to_office=time_to_go_to_office, time_to_leave_office=time_to_leave_office)
+        db_session.add(db_records)
+        db_session.commit()
+        db_session.close()  # 사용 후 닫아야 하는지 이거 맞는지는 모르겠다.실험해보자
+        return db_records
 
 #  __________________________________________________________________________________________________________________________________ employee_commutation_management_tb e
