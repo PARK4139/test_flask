@@ -1,13 +1,11 @@
+# :: ORM SETTING
 import sqlalchemy
 from sqlalchemy import Integer, Column, String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship, backref
-
 from config import db_url
-
 engine = sqlalchemy.create_engine(db_url)  # db_url 변경 소지 있음.
 Base = declarative_base()
 Base.metadata.create_all(engine)
-
 Session = sqlalchemy.orm.sessionmaker()
 Session.configure(bind=engine)
 db_session = Session()
@@ -162,8 +160,6 @@ class Answer():
 
 
 #  __________________________________________________________________________________________________________________________________ employee_joined_list s
-
-
 class employee_joined_list(Base):
     __tablename__ = "employee_joined_list"
     # __table_args__ = {'mysql_collate': 'utf8_general_ci'}  # encoding 안되면 비슷하게 방법을 알아보자  mysql 에 적용이 가능한 코드로 보인다.
@@ -219,10 +215,10 @@ class employee_joined_list(Base):
         return new_records
 
     def get_employee_joined(id, pw):
-        # :: NATIVE QUERY 사용 방식
+        # :: NATIVE QUERY 방식
         # select_result = f'''SELECT * FROM employee_joined_list where id= {id} and pw= {pw} ORDER BY date_joined LIMIT 2;'''
 
-        # :: ORM 사용 방식
+        # :: ORM 방식
         select_result = db_session.query(employee_joined_list).filter_by(id=id, pw=pw).limit(2)
         # select_result = session.query(employee_joined_list).filter_by(id=id, pw=pw).first()
         # select_result = session.query(employee_joined_list).filter_by(id=id).order_by(employee_joined_list.id_autoincrement.desc()).all()

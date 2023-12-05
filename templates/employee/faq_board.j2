@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>직원 FAQ 게시판</title>
+    <title>업무 FAQ 공유</title>
 </head>
 <body> 
-    <h1>직원 FAQ 게시판</h1>
+    <h1>업무 FAQ 공유</h1>
     <br> 
     {# jinja2 template 의 주석 #}
 
@@ -24,15 +24,6 @@
     {% endfor %}
     </ul>
     <br>
-
-    
-
-    <h1>직원 시스템 서버로 파일을 업로드</h1>
-    <form name="form_file_transfer" action="/employee/upload" enctype="multipart/form-data" method="post" autocomplete="off">
-         <input type="text" name="filename"/>
-        <input type="file" name="file">
-        <input type="submit"> 
-    </form>
 
 </body>
 </html>

@@ -11,7 +11,7 @@ COPY python_pakage_version.log ./
 # COPY run_development_server.ini ./
 COPY static ./
 COPY templates ./
-COPY uploads ./
+COPY name ./
 COPY web_flask.py ./
 # COPY web_server.Dockerfile ./
 COPY __pycache__ ./

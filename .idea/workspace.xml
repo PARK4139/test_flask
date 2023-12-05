@@ -4,68 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="472f6b05-386f-4726-83d4-d2b1ec4715c7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employee/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/cute.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/cute.PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask.py" afterDir="false" />
-    </list>
+    <list default="true" id="54cf8158-751c-4804-bb27-68adaea925a0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2OSJ0MZ3LI92ZlJxLphZ3fF7bM8" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="2Yqmktb9TnDlsC9sHVERjcVnDKN" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/WIN10PROPC3/Desktop/services/web_service_with_flask",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "RunOnceActivity.ShowReadmeOnStart": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\WIN10PROPC3\Desktop\`workspace\[TO DO]\`services\`prj_flask\static" />
-      <recent name="E:\PRJS_PRIVATE\prj_web_based_on_python_flask\config" />
-      <recent name="E:\PRJS_PRIVATE\prj_web\prj_web_based_on_python_flask\templates\admin" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\PRJS_PRIVATE\prj_web\prj_web_based_on_python_flask" />
-      <recent name="E:\PRJS_PRIVATE\prj_web\prj_web_based_on_python_flask\config" />
-    </key>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="472f6b05-386f-4726-83d4-d2b1ec4715c7" name="Changes" comment="" />
-      <created>1681547825106</created>
+      <changelist id="54cf8158-751c-4804-bb27-68adaea925a0" name="Changes" comment="" />
+      <created>1701261629511</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1681547825106</updated>
+      <updated>1701261629511</updated>
     </task>
     <servers />
   </component>

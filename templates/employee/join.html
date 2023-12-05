@@ -4,12 +4,11 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>직원 회원가입</title>
+  <title>회원가입</title>
 </head>
 <body>
-  <div>직원 회원가입</div>
   <form  name='form_join' action="/employee/join_" method="post" autocomplete="off">
-  <!-- __________________________________________________________________________________________________________________________________ 회원가입 처리 양식 s -->
+  <!-- __________________________________________________________________________________________________________________________________ 회원가입 처리  s -->
 
     <div>
       <label for="link202311111506">이름</label>
@@ -32,8 +31,12 @@
     </div>
 
     <div>
-      <label for="link20231112120141">pw</label>
+      <label for="link20231112120141">비밀번호</label>
       <input type="text" name="pw" id="link20231112120141">
+    </div>
+    <div>
+      <label for="link20231112120142">비밀번호 확인</label>
+      <input type="text" name="pw2" id="link20231112120142">
     </div>
 
     <div>
@@ -48,8 +51,8 @@
 
     <button type="submit">회원가입</button>
   </form>
-  <!-- __________________________________________________________________________________________________________________________________ 회원가입 양식 처리 e -->
-  
+  <!-- __________________________________________________________________________________________________________________________________ 회원가입  처리 e -->
+  <input type="button" name="button-to-go-to-login" id="link202311111506">
   <!-- <div>네이버로 회원가입</div> -->
   <!-- <div>카카오로 회원가입</div> -->
 </body>
