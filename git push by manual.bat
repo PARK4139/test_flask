@@ -40,6 +40,7 @@ for %%F in ("%CD%") do set "PROJECT_DIRECTORY_DIRNAME=%%~nxF"
 
 
 
+
 :: CHECK GIT HUB PUSH DONE (Now)
 explorer https://github.com/PARK4139/%PROJECT_DIRECTORY_DIRNAME%
 
